@@ -2,9 +2,7 @@
 
 namespace BCcampus;
 
-use Walker_Nav_Menu;
-
-class walkernav extends Walker_Nav_Menu
+class MegaWalker extends \Walker_Nav_Menu
 {
 
     public $megaMenuID;
