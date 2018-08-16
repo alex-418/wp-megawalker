@@ -1,6 +1,6 @@
 <?php
 
-namespace awps\core;
+namespace BCcampus;
 
 use Walker_Nav_Menu;
 
