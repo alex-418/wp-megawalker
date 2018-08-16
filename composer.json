@@ -1,11 +1,28 @@
 {
-    "name": "alexparedes/wp-megawalker",
+    "name": "alex-418/wp-megawalker",
     "version": "1.0.0",
+    "keywords": ["wordpress", "bootstrap", "bootstrap 4", "submenu", "nav walker"],
+    "license": "MIT",
     "authors": [
         {
             "name": "alex-418",
             "email": "aparedes@bccampus.ca"
         }
     ],
-    "require": {}
+    "require-dev": {
+        "humanmade/coding-standards": "^0.2.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "BCcampus\\": "inc"
+        }
+    },
+    "scripts": {
+        "test": [
+            "@standards"
+        ],
+        "standards": [
+            "vendor/bin/phpcs --standard=phpcs.ruleset.xml inc"
+        ]
+    }
 }
