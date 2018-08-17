@@ -5,173 +5,173 @@ namespace BCcampus;
 class MegaWalker extends \Walker_Nav_Menu
 {
 
-    public $megaMenuID;
+	public $megaMenuID;
 
-    public $count;
+	public $count;
 
-    public function __construct()
-    {
-        $this->megaMenuID = 0;
+	public function __construct()
+	{
+		$this->megaMenuID = 0;
 
-        $this->count = 0;
-    }
+		$this->count = 0;
+	}
 
-    public function start_lvl(&$output, $depth = 0, $args = array())
-    {
-        $indent = str_repeat("\t", $depth);
-        $submenu = ($depth > 0) ? ' sub-menu' : '';
-        $output .= "\n$indent<ul class=\"dropdown-menu$submenu depth_$depth\" >\n";
+	public function start_lvl(&$output, $depth = 0, $args = array())
+	{
+		$indent = str_repeat("\t", $depth);
+		$submenu = ($depth > 0) ? ' sub-menu' : '';
+		$output .= "\n$indent<ul class=\"dropdown-menu$submenu depth_$depth\" >\n";
 
-        if ($this->megaMenuID != 0 && $depth == 0) {
-            $output .= "<li class=\"megamenu-column\"><ul>\n";
-        }
-        
-    }
+		if ($this->megaMenuID != 0 && $depth == 0) {
+			$output .= "<li class=\"megamenu-column\"><ul>\n";
+		}
 
-    public function end_lvl(&$output, $depth = 0, $args = array())
-    {
-        if ($this->megaMenuID != 0 && $depth == 0) {
-            $output .= "</ul></li>";
-        }
+	}
 
-        $output .= "</ul>";
-    }
+	public function end_lvl(&$output, $depth = 0, $args = array())
+	{
+		if ($this->megaMenuID != 0 && $depth == 0) {
+			$output .= "</ul></li>";
+		}
 
-    public function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0)
-    {
+		$output .= "</ul>";
+	}
 
-        $hasMegaMenu = get_post_meta( $item->ID, 'menu-item-mm-megamenu', true );
-        $hasColumnDivider = get_post_meta( $item->ID, 'menu-item-mm-column-divider', true );
-        $hasDivider = get_post_meta( $item->ID, 'menu-item-mm-divider', true );
-        $hasFeaturedImage = get_post_meta( $item->ID, 'menu-item-mm-featured-image', true );
-        $hasDescription = get_post_meta( $item->ID, 'menu-item-mm-description', true );
+	public function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0)
+	{
 
-        $indent = ($depth) ? str_repeat("\t", $depth) : '';
+		$hasMegaMenu = get_post_meta( $item->ID, 'menu-item-mm-megamenu', true );
+		$hasColumnDivider = get_post_meta( $item->ID, 'menu-item-mm-column-divider', true );
+		$hasDivider = get_post_meta( $item->ID, 'menu-item-mm-divider', true );
+		$hasFeaturedImage = get_post_meta( $item->ID, 'menu-item-mm-featured-image', true );
+		$hasDescription = get_post_meta( $item->ID, 'menu-item-mm-description', true );
 
-        $li_attributes = '';
-        $class_names = $value = '';
+		$indent = ($depth) ? str_repeat("\t", $depth) : '';
 
-        $classes = empty($item->classes) ? array() : (array) $item->classes;
+		$li_attributes = '';
+		$class_names = $value = '';
 
-        if ($this->megaMenuID != 0 && $this->megaMenuID != intval($item->menu_item_parent) && $depth == 0) {
-            $this->megaMenuID = 0;
-        }
+		$classes = empty($item->classes) ? array() : (array) $item->classes;
 
-        // $column_divider = array_search('column-divider', $classes);
-        if ($hasColumnDivider) {
-            array_push($classes, 'column-divider');
-            $output .= "</ul></li><li class=\"megamenu-column\"><ul>\n";
-        }
+		if ($this->megaMenuID != 0 && $this->megaMenuID != intval($item->menu_item_parent) && $depth == 0) {
+			$this->megaMenuID = 0;
+		}
 
-        // managing divider: add divider class to an element to get a divider before it.
-        // $divider_class_position = array_search('divider', $classes);
-        if ($hasDivider) {
-            $output .= "<li class=\"divider\"></li>\n";
-            // unset($classes[$divider_class_position]);
-        }
+		// $column_divider = array_search('column-divider', $classes);
+		if ($hasColumnDivider) {
+			array_push($classes, 'column-divider');
+			$output .= "</ul></li><li class=\"megamenu-column\"><ul>\n";
+		}
 
-        if ($hasMegaMenu) {
-            array_push($classes, 'megamenu');
-            $this->megaMenuID = $item->ID;
-        }
+		// managing divider: add divider class to an element to get a divider before it.
+		// $divider_class_position = array_search('divider', $classes);
+		if ($hasDivider) {
+			$output .= "<li class=\"divider\"></li>\n";
+			// unset($classes[$divider_class_position]);
+		}
 
-        $classes[] = ($args->has_children) ? 'dropdown' : '';
-        $classes[] = ($item->current || $item->current_item_ancestor) ? 'active' : '';
-        $classes[] = 'menu-item-'.$item->ID;
-        if ($depth && $args->has_children) {
-            $classes[] = 'dropdown-submenu';
-        }
+		if ($hasMegaMenu) {
+			array_push($classes, 'megamenu');
+			$this->megaMenuID = $item->ID;
+		}
 
-        if ($hasFeaturedImage) {
-            array_push($classes, 'featured-image');
-        }
+		$classes[] = ($args->has_children) ? 'dropdown' : '';
+		$classes[] = ($item->current || $item->current_item_ancestor) ? 'active' : '';
+		$classes[] = 'menu-item-'.$item->ID;
+		if ($depth && $args->has_children) {
+			$classes[] = 'dropdown-submenu';
+		}
 
-        if ($hasDescription) {
-            array_push($classes, 'description');
-        }
+		if ($hasFeaturedImage) {
+			array_push($classes, 'featured-image');
+		}
 
-        $class_names = implode(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item, $args));
-        $class_names = ' class="'.esc_attr($class_names).'"';
+		if ($hasDescription) {
+			array_push($classes, 'description');
+		}
 
-        $id = apply_filters('nav_menu_item_id', 'menu-item-'.$item->ID, $item, $args);
-        $id = strlen($id) ? ' id="'.esc_attr($id).'"' : '';
+		$class_names = implode(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item, $args));
+		$class_names = ' class="'.esc_attr($class_names).'"';
 
-        $output .= $indent.'<li'.$id.$value.$class_names.$li_attributes.'>';
+		$id = apply_filters('nav_menu_item_id', 'menu-item-'.$item->ID, $item, $args);
+		$id = strlen($id) ? ' id="'.esc_attr($id).'"' : '';
 
-        $attributes = !empty($item->attr_title) ? ' title="'.esc_attr($item->attr_title).'"' : '';
-        $attributes .= !empty($item->target) ? ' target="'.esc_attr($item->target).'"' : '';
-        $attributes .= !empty($item->xfn) ? ' rel="'.esc_attr($item->xfn).'"' : '';
-        $attributes .= !empty($item->url) ? ' href="'.esc_attr($item->url).'"' : '';
-        $attributes .= ($args->has_children) ? ' class="dropdown-toggle" data-toggle="dropdown"' : '';
+		$output .= $indent.'<li'.$id.$value.$class_names.$li_attributes.'>';
 
-        $item_output = $args->before;
-        $item_output .= '<a'.$attributes.'>';
+		$attributes = !empty($item->attr_title) ? ' title="'.esc_attr($item->attr_title).'"' : '';
+		$attributes .= !empty($item->target) ? ' target="'.esc_attr($item->target).'"' : '';
+		$attributes .= !empty($item->xfn) ? ' rel="'.esc_attr($item->xfn).'"' : '';
+		$attributes .= !empty($item->url) ? ' href="'.esc_attr($item->url).'"' : '';
+		$attributes .= ($args->has_children) ? ' class="dropdown-toggle" data-toggle="dropdown"' : '';
 
-        // Check if item has featured image
-        // $has_featured_image = array_search('featured-image', $classes);
-        if ($hasFeaturedImage && $this->megaMenuID != 0) {
-            $postID = url_to_postid( $item->url );
-            $item_output .= "<img alt=\"" . esc_attr($item->attr_title) . "\" src=\"" . get_the_post_thumbnail_url( $postID ) . "\"/>";
-        }
+		$item_output = $args->before;
+		$item_output .= '<a'.$attributes.'>';
 
-        $item_output .= $args->link_before.apply_filters('the_title', $item->title, $item->ID).$args->link_after;
+		// Check if item has featured image
+		// $has_featured_image = array_search('featured-image', $classes);
+		if ($hasFeaturedImage && $this->megaMenuID != 0) {
+			$postID = url_to_postid( $item->url );
+			$item_output .= "<img alt=\"" . esc_attr($item->attr_title) . "\" src=\"" . get_the_post_thumbnail_url( $postID ) . "\"/>";
+		}
 
-            // add support for menu item title
-            if (strlen($item->attr_title) > 2) {
-                $item_output .= '<h3 class="tit">'.$item->attr_title.'</h3>';
-            }
-            // add support for menu item descriptions
-            if (strlen($item->description) > 2) {
-                $item_output .= '</a> <span class="sub">'.$item->description.'</span>';
-            }
-        $item_output .= (($depth == 0 || 1) && $args->has_children) ? ' <b class="caret"></b></a>' : '</a>';
-        $item_output .= $args->after;
+		$item_output .= $args->link_before.apply_filters('the_title', $item->title, $item->ID).$args->link_after;
 
-        $output .= apply_filters('walker_nav_menu_start_el', $item_output, $item, $depth, $args);
-    }
+		// add support for menu item title
+		if (strlen($item->attr_title) > 2) {
+			$item_output .= '<h3 class="tit">'.$item->attr_title.'</h3>';
+		}
+		// add support for menu item descriptions
+		if (strlen($item->description) > 2) {
+			$item_output .= '</a> <span class="sub">'.$item->description.'</span>';
+		}
+		$item_output .= (($depth == 0 || 1) && $args->has_children) ? ' <b class="caret"></b></a>' : '</a>';
+		$item_output .= $args->after;
 
-    public function display_element($element, &$children_elements, $max_depth, $depth, $args, &$output)
-    {
-        if (!$element) {
-            return;
-        }
+		$output .= apply_filters('walker_nav_menu_start_el', $item_output, $item, $depth, $args);
+	}
 
-        $id_field = $this->db_fields['id'];
+	public function display_element($element, &$children_elements, $max_depth, $depth, $args, &$output)
+	{
+		if (!$element) {
+			return;
+		}
 
-        //display this element
-        if (is_array($args[0])) {
-            $args[0]['has_children'] = !empty($children_elements[$element->$id_field]);
-        } elseif (is_object($args[0])) {
-            $args[0]->has_children = !empty($children_elements[$element->$id_field]);
-        }
+		$id_field = $this->db_fields['id'];
 
-        $cb_args = array_merge(array(&$output, $element, $depth), $args);
-        call_user_func_array(array(&$this, 'start_el'), $cb_args);
+		//display this element
+		if (is_array($args[0])) {
+			$args[0]['has_children'] = !empty($children_elements[$element->$id_field]);
+		} elseif (is_object($args[0])) {
+			$args[0]->has_children = !empty($children_elements[$element->$id_field]);
+		}
 
-        $id = $element->$id_field;
+		$cb_args = array_merge(array(&$output, $element, $depth), $args);
+		call_user_func_array(array(&$this, 'start_el'), $cb_args);
 
-        // descend only when the depth is right and there are childrens for this element
-        if (($max_depth == 0 || $max_depth > $depth + 1) && isset($children_elements[$id])) {
-            foreach ($children_elements[ $id ] as $child) {
-                if (!isset($newlevel)) {
-                    $newlevel = true;
-              //start the child delimiter
-              $cb_args = array_merge(array(&$output, $depth), $args);
-                    call_user_func_array(array(&$this, 'start_lvl'), $cb_args);
-                }
-                $this->display_element($child, $children_elements, $max_depth, $depth + 1, $args, $output);
-            }
-            unset($children_elements[ $id ]);
-        }
+		$id = $element->$id_field;
 
-        if (isset($newlevel) && $newlevel) {
-            //end the child delimiter
-          $cb_args = array_merge(array(&$output, $depth), $args);
-            call_user_func_array(array(&$this, 'end_lvl'), $cb_args);
-        }
+		// descend only when the depth is right and there are childrens for this element
+		if (($max_depth == 0 || $max_depth > $depth + 1) && isset($children_elements[$id])) {
+			foreach ($children_elements[ $id ] as $child) {
+				if (!isset($newlevel)) {
+					$newlevel = true;
+					//start the child delimiter
+					$cb_args = array_merge(array(&$output, $depth), $args);
+					call_user_func_array(array(&$this, 'start_lvl'), $cb_args);
+				}
+				$this->display_element($child, $children_elements, $max_depth, $depth + 1, $args, $output);
+			}
+			unset($children_elements[ $id ]);
+		}
 
-        //end this element
-        $cb_args = array_merge(array(&$output, $element, $depth), $args);
-        call_user_func_array(array(&$this, 'end_el'), $cb_args);
-    }
+		if (isset($newlevel) && $newlevel) {
+			//end the child delimiter
+			$cb_args = array_merge(array(&$output, $depth), $args);
+			call_user_func_array(array(&$this, 'end_lvl'), $cb_args);
+		}
+
+		//end this element
+		$cb_args = array_merge(array(&$output, $element, $depth), $args);
+		call_user_func_array(array(&$this, 'end_el'), $cb_args);
+	}
 }
