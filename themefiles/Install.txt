@@ -1,0 +1,6 @@
+WordPress theme:
+MenuFields.php - Add this to your theme's functions.php file
+Styles.css - Add this to your theme's stylesheet
+
+Roots Sage theme:
+Follow the instructions in the files included in the sage directory

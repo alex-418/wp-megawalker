@@ -1,12 +1,12 @@
 <?php
 	/**
-	 * Add this to your themes functions.php
 	 * MegaWalker Nav Editor Fields
 	 * Create fields
 	 * Show columns
 	 * Save/Update fields
 	 * Update the Walker nav
 	 * @return array
+	 * todo: Do this only if the alex418/MegaWalkerEditor class exists
 	 */
 
 	function fieldsList() {
@@ -33,9 +33,9 @@
 			$value = get_post_meta( $item->ID, $key, true );
 			$class = sprintf( 'field-%s', $_key );
 			?>
-			<p class="description description-wide <?php echo esc_attr( $class ) ?>">
-				<label for="<?php echo esc_attr( $id ); ?>"><input type="checkbox" id="<?php echo esc_attr( $id ); ?>" name="<?php echo esc_attr( $name ); ?>" value="1" <?php echo ( $value == 1 ) ? 'checked="checked"' : ''; ?> /><?php echo esc_attr( $label ); ?></label>
-			</p>
+            <p class="description description-wide <?php echo esc_attr( $class ) ?>">
+                <label for="<?php echo esc_attr( $id ); ?>"><input type="checkbox" id="<?php echo esc_attr( $id ); ?>" name="<?php echo esc_attr( $name ); ?>" value="1" <?php echo ( $value == 1 ) ? 'checked="checked"' : ''; ?> /><?php echo esc_attr( $label ); ?></label>
+            </p>
 		<?php
 		endforeach;
 
@@ -82,7 +82,7 @@
 
 // Custom Walker for the Nav Menu Editor
 	add_filter( 'wp_edit_nav_menu_walker', function ( $walker ) {
-		$walker = 'BCcampus\MegaWalkerEditor';
+		$walker = 'alex418\MegaWalkerEditor';
 
 		return $walker;
 	}, 99 );

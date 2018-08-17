@@ -1,7 +1,7 @@
 {
     "name": "alex-418/wp-megawalker",
     "version": "1.0.0",
-    "keywords": ["wordpress", "bootstrap", "bootstrap 4", "submenu", "nav walker"],
+    "keywords": ["wordpress", "bootstrap", "bootstrap 4", "submenu", "megamenu", "mega menu", "nav walker"],
     "license": "MIT",
     "authors": [
         {
@@ -14,7 +14,7 @@
     },
     "autoload": {
         "psr-4": {
-            "BCcampus\\": "inc"
+            "alex418\\": "inc"
         }
     },
     "scripts": {

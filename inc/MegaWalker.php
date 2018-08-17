@@ -1,6 +1,6 @@
 <?php
 
-namespace BCcampus;
+namespace alex418;
 
 class MegaWalker extends \Walker_Nav_Menu
 {

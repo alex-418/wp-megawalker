@@ -1,6 +1,6 @@
 <?php
 
-	namespace BCcampus;
+	namespace alex418;
 /**
  * Custom Walker for Nav Menu Editor
  *

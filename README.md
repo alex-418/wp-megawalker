@@ -6,10 +6,17 @@ A custom WordPress nav walker that helps you create a Bootstrap "MegaMenu" by ad
 
 ## Notes
 These are utility classes that are intended to format your WordPress theme menu with the correct syntax and CSS classes to create a MegaMenu utilizing the Bootstrap dropdown navigation. It does not include the required Bootstrap JS and CSS files - you will have to include them manually in your theme.
+Along with the files mentioned in the installation instructions. 
+
+## Screenshots 
+Coming soon. 
 
 ## Installation
 1. Add the included `MenuFields.php` file to your themes `functions.php` 
-2. Add the `navbar-megamenu` class to your bootstrap nav menu in your theme (usually in the header)
+2. Add the `navbar-megamenu` class to your bootstrap nav menu in your theme (usually in the header), it should look similar to:
+```
+<nav class="navbar navbar-light bg-faded rounded navbar-expand-md primary_navigation navbar-megamenu">
+```
 3. Add the contents of `styles.css` to your themes stylesheet 
 4. Add or update any `wp_nav_menu()` functions in your theme (often found in `header.php`) to use the new walker by adding a `'walker'` item to the wp_nav_menu args array.
 
@@ -24,6 +31,10 @@ wp_nav_menu( array(
     'walker' => new MegaWalker(), // This is our new walker class
 ) );
 ```
+
+## Roots Sage theme support
+If you're using the [Roots Sage](https://roots.io/sage/) theme, follow the instructions in the included `themefiles/sage` directory. 
+
 ## Displaying the Menu
 To display the menu you must associate your menu with your theme location.
 
