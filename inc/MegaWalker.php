@@ -19,8 +19,9 @@ class MegaWalker extends \Walker_Nav_Menu
 	public function start_lvl(&$output, $depth = 0, $args = array())
 	{
 		$indent = str_repeat("\t", $depth);
-		$submenu = ($depth > 0) ? ' sub-menu' : '';
-		$output .= "\n$indent<ul class=\"dropdown-menu$submenu depth_$depth\" >\n";
+		$submenu = ($depth > 0) ? 'sub-menu' : '';
+		$parentmenu = ($depth === 0) ? 'dropdown-menu' : '';
+		$output .= "\n$indent<ul class=\"$parentmenu$submenu depth_$depth\" >\n";
 
 		if ($this->megaMenuID != 0 && $depth == 0) {
 			$output .= "<li class=\"megamenu-column\"><ul>\n";
