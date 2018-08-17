@@ -7,7 +7,7 @@
 }
 
 .navbar-megamenu .navbar-nav > li.megamenu > .dropdown-menu {
-    background-color: $color-grey-light;
+    background-color: #ebebeb;
     width: 100%;
     border: none;
     border-radius: 0;
@@ -24,7 +24,7 @@
     display: block;
     content: '';
     width: 1px;
-    background-color: $color-grey-light;
+    background-color: #ebebeb;
     height: 100%;
     top: 0;
 }
