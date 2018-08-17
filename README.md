@@ -7,7 +7,7 @@ A custom WordPress nav walker that helps you create a Bootstrap "MegaMenu" by ad
 ## Notes
 These are utility classes that are intended to format your WordPress theme menu with the correct syntax and CSS classes to create a MegaMenu utilizing the Bootstrap dropdown navigation. It does not include the required Bootstrap JS and CSS files - you will have to include them manually in your theme.
 
-## Usage
+## Installation
 1. Add the included `MenuFields.php` file to your themes `functions.php` 
 2. Add the `navbar-megamenu` class to your bootstrap nav menu in your theme (usually in the header)
 3. Add the contents of `styles.css` to your themes stylesheet 
