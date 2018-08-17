@@ -1,0 +1,87 @@
+/**
+* MegaMenu styling
+*/
+
+.navbar-megamenu .navbar-nav > li.megamenu {
+    position: static;
+}
+
+.navbar-megamenu .navbar-nav > li.megamenu > .dropdown-menu {
+    background-color: $color-grey-light;
+    width: 100%;
+    border: none;
+    border-radius: 0;
+}
+
+.navbar-megamenu .navbar-nav > li.megamenu > .dropdown-menu .megamenu-column {
+    width: 280px;
+    display: block;
+    float: left;
+}
+
+.navbar-megamenu .navbar-nav > li.megamenu > .dropdown-menu .megamenu-column:not(:first-child):after {
+    position: absolute;
+    display: block;
+    content: '';
+    width: 1px;
+    background-color: $color-grey-light;
+    height: 100%;
+    top: 0;
+}
+
+.navbar-megamenu .navbar-nav > li.megamenu > .dropdown-menu .megamenu-column .divider {
+    margin: 16px 20px 10px;
+    max-width: 60px;
+}
+
+.navbar-megamenu .navbar-nav > li.megamenu > .dropdown-menu .megamenu-column ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.navbar-megamenu .navbar-nav > li.megamenu > .dropdown-menu .megamenu-column a {
+    font-size: 13px;
+    padding: 3px 20px;
+    display: block;
+    color: $color-black;
+}
+
+.navbar-megamenu .navbar-nav > li.megamenu > .dropdown-menu .megamenu-column a:hover, .navbar-megamenu .navbar-nav > li.megamenu > .dropdown-menu .megamenu-column a:focus {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.navbar-megamenu .navbar-nav > li.megamenu > .dropdown-menu .megamenu-column span.sub {
+    font-size: 11px;
+    line-height: 1.6em;
+    margin-top: -4px;
+    padding: 2px 20px;
+    display: block;
+}
+
+.navbar-megamenu .navbar-nav > li.megamenu > .dropdown-menu .megamenu-column .featured-image a {
+    font-size: 14px;
+    color: #2E7DD9;
+    font-weight: 600;
+}
+
+.navbar-megamenu .navbar-nav > li.megamenu > .dropdown-menu .megamenu-column .featured-image a img {
+    padding: 5px 0;
+}
+
+.navbar-megamenu .navbar-nav > li.megamenu > .dropdown-menu .megamenu-column .description {
+    padding: 3px 0;
+}
+
+.navbar-megamenu .navbar-nav > li.megamenu > .dropdown-menu .megamenu-column .description a {
+    display: none;
+}
+
+.navbar-megamenu .navbar-nav > li.megamenu > .dropdown-menu .megamenu-column a.dropdown-toggle.parent::after {
+    display:none;
+}
+
+.navbar-megamenu .navbar-nav > li.megamenu > .dropdown-menu .megamenu-column a.dropdown-toggle.parent {
+    font-weight:bold;
+}
