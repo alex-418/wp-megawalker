@@ -1,10 +1,11 @@
 <?php
 
+	namespace BCcampus;
 /**
  * Custom Walker for Nav Menu Editor
  *
  */
-class MegaMenu_Walker_Edit extends Walker_Nav_Menu_Edit {
+class MegaWalkerEditor extends \Walker_Nav_Menu_Edit {
 
     /**
      * Start the element output.
