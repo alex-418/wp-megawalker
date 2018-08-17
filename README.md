@@ -2,7 +2,7 @@
 
 # WordPress MegaWalker
 
-A custom WordPress nav walker that implements a Bootstrap "MegaMenu" using the WordPress built in menu manager.
+A custom WordPress nav walker that helps you create a Bootstrap "MegaMenu" by adding new option fields to the WordPress built in menu manager.
 
 ## Notes
 These are utility classes that are intended to format your WordPress theme menu with the correct syntax and CSS classes to create a MegaMenu utilizing the Bootstrap dropdown navigation. It does not include the required Bootstrap JS and CSS files - you will have to include them manually in your theme.
